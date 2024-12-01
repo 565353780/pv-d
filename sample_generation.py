@@ -385,6 +385,14 @@ def generate(model, opt):
 
         pts = gen.transpose(1,2).contiguous().reshape(-1, 3).numpy()
 
+        min_vals = np.min(pts, axis=0)
+        max_vals = np.max(pts, axis=0)
+
+        center = (min_vals + max_vals) / 2.0
+        scale = np.max(max_vals - min_vals)
+
+        pts = (pts - center) / scale
+
         pcd = o3d.geometry.PointCloud()
         pcd.points = o3d.utility.Vector3dVector(pts)
         o3d.io.write_point_cloud(opt.eval_path + str(i) + '.ply', pcd, write_ascii=True)
