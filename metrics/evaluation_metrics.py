@@ -5,7 +5,7 @@ from scipy.stats import entropy
 from sklearn.neighbors import NearestNeighbors
 from numpy.linalg import norm
 
-from metrics.PyTorchEMD.emd import earth_mover_distance as EMD
+from emd import earth_mover_distance as EMD
 from metrics.ChamferDistancePytorch.chamfer3D.dist_chamfer_3D import chamfer_3DDist
 from metrics.ChamferDistancePytorch.fscore import fscore
 from tqdm import tqdm
