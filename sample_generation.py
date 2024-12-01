@@ -395,7 +395,7 @@ def generate(model, opt):
 
         pcd = o3d.geometry.PointCloud()
         pcd.points = o3d.utility.Vector3dVector(pts)
-        o3d.io.write_point_cloud(opt.eval_path + str(i) + '.ply', pcd, write_ascii=True)
+        o3d.io.write_point_cloud(opt.eval_path + str(i) + '_pcd.ply', pcd, write_ascii=True)
 
     return True
 
