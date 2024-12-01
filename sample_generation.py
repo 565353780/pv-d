@@ -399,12 +399,6 @@ def main(opt):
         opt.beta_end = 0.008
         opt.schedule_type = 'warm0.1'
 
-    exp_id = os.path.splitext(os.path.basename(__file__))[0]
-    dir_id = os.path.dirname(__file__)
-    output_dir = get_output_dir(dir_id, exp_id)
-    copy_source(__file__, output_dir)
-    logger = setup_logging(output_dir)
-
     betas = get_betas(opt.schedule_type, opt.beta_start, opt.beta_end, opt.time_num)
     model = Model(opt, betas, opt.loss_type, opt.model_mean_type, opt.model_var_type)
 
@@ -421,7 +415,7 @@ def main(opt):
 
     with torch.no_grad():
 
-        logger.info("Resume Path:%s" % opt.model)
+        print("Resume Path:%s" % opt.model)
 
         resumed_param = torch.load(opt.model)
         model.load_state_dict(resumed_param['model_state'])
